@@ -22,10 +22,12 @@ Route::get('/contact/{id}', function ($id) {
     return view('contact', ['contact' => $contact]);
 });
 
-Route::get('/admin', function () {
-    $contacts = App\Contact::orderBy('name')->get();
-    return view('admin', ['contacts' => $contacts]);
-})->middleware('auth');
+// Route::get('/admin', function () {
+//     $contacts = App\Contact::orderBy('name')->get();
+//     return view('admin', ['contacts' => $contacts]);
+// })->middleware('auth');
+
+Route::resource('contacts','ContactController')->middleware('auth');
 
 Auth::routes();
 
